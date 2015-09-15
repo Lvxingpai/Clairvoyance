@@ -1,3 +1,5 @@
 .meteor/local
 .meteor/meteorite
+**/.DS_store
 .DS_store
+packages
