@@ -2,4 +2,8 @@
 .meteor/meteorite
 **/.DS_store
 .DS_store
-packages
+packages/npm-container/.npm
+
+npm-container/*
+!npm-container/index.js
+!npm-container/package.js
