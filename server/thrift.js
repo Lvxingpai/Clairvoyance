@@ -1,4 +1,5 @@
 var thrift = Meteor.npmRequire('thrift');
+
 ThriftClass = function (serverName, serverPackageName, serviceList){
   // 初始化
   this.serverName = serverName;//服务在etcd中的名称
@@ -33,22 +34,21 @@ ThriftClass = function (serverName, serverPackageName, serviceList){
    */
   this.createClient = function (connection) {
     var self = this;
-    //TODO 测试报错
-    var serviceModule = Meteor.npmRequire(this.serverPackageName);
-    if (!serviceModule) {
-      console.log('检查thrift的node.js包名');
-      return;
+    try{
+      var serviceModule = Meteor.npmRequire(this.serverPackageName);
+      _.each(this.serviceList, function(serviceName){
+        if (! serviceModule[serviceName]) {
+          console.log('服务的thrift package中无法找到 ' + serviceName + ' 服务');
+          return;
+        }
+        var service = serviceModule[serviceName];
+        var client = thrift.createClient(service, connection);
+        self.attachApi(serviceName, client);
+      });
+    } catch(e){
+      console.log(e);
+      console.log('未找到node package:' + this.serverPackageName);
     }
-
-    _.each(this.serviceList, function(serviceName){
-      if (! serviceModule[serviceName]) {
-        console.log('服务的thrift package中无法找到 ' + serviceName + ' 服务');
-        return;
-      }
-      var service = serviceModule[serviceName];
-      var client = thrift.createClient(service, connection);
-      self.attachApi(serviceName, client);
-    });
   }
 
   /**
