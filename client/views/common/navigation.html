@@ -27,6 +27,17 @@
                         IN+
                     </div>
                 </li>
+                <!--backend service navi-->
+                <li class="{{isActiveRoute regex='services|hosts|mongos|redis'}}">
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Backend Service</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level {{isActiveRoute regex='services|hosts|mongos|redis' className='in'}}">
+                        <li class="{{isActiveRoute regex='services'}}"><a href="{{pathFor route='services'}}">ServiceList</a></li>
+                        <li class="{{isActiveRoute regex='hosts'}}"><a href="{{pathFor route='hosts'}}">Hosts</a></li>
+                        <li class="{{isActiveRoute regex='mongos'}}"><a href="{{pathFor route='mongos'}}">MongoDB</a></li>
+                        <li class="{{isActiveRoute regex='redis'}}"><a href="{{pathFor route='redis'}}">Redis</a></li>
+                    </ul>
+                </li>
+                <!---->
                 <li class="{{isActiveRoute regex='dashboard1|dashboard2|dashboard3|dashboard4l'}}">
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level {{isActiveRoute regex='dashboard1|dashboard2|dashboard3|dashboard4l' className='in'}}">

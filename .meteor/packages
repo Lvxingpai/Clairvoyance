@@ -5,12 +5,10 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 less
 iron:router
 twbs:bootstrap
 fortawesome:fontawesome
-zimme:iron-router-active
 jquery
 okgrow:iron-router-autoscroll
 dbarrett:dropzonejs
@@ -22,3 +20,5 @@ meteorhacks:npm
 
 
 npm-container
+zimme:active-route
+pahans:reactive-modal

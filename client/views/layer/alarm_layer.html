@@ -1,0 +1,47 @@
+<template name="alarmLayer">
+    <div class="alarm-layer">
+        <div class="checkbox">
+            <input type="checkbox" id="alarmEnable">
+            <label for="alarmEnable">Enabled</label>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <form>
+                    <div class="form-group">
+                        <label for="setInterval">Interval</label>
+                        <input type="text" class="form-control" id="setInterval" placeholder="">
+                    </div>
+                    <select class="form-control">
+                        <label class="alarm-alertpolicy">Alert policy</label>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                    <div class="form-group">
+                        <label for="setMinimalNodes">Minimal nodes count</label>
+                        <input type="text" class="form-control" id="setMinimalNodes" placeholder="">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <div class="checkbox">
+                    <input type="checkbox" id="alarmPing">
+                    <label for="alarmPing">Custom ping</label>
+                </div>
+                <div class="ping-setting">
+                    <div class="form-group">
+                        <label for="setEntrypoint">Entrypoint</label>
+                        <input type="text" class="form-control" id="setEntrypoint" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="setPort">Port</label>
+                        <input type="text" class="form-control" id="setPort" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="setValidation">Validation</label>
+                        <textarea class="form-control" rows="3" id="setValidation"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
