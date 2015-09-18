@@ -38,7 +38,7 @@ var AlarmManagerClass = function(){
           }
 
           if (response && response.statusCode == 200)
-            responseData = response.data;
+            responseData = JSON.parse(response.content);
         }
 
         // 检测返回的数据的正确性
