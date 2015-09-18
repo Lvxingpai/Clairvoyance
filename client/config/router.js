@@ -18,6 +18,31 @@ Router.onBeforeAction(requireLogin, {
   except: ['login', 'register', 'forgetPassword', ]
 });
 
+
+//
+// Backend Service routes
+//
+
+Router.route('/services', {
+  name: 'services',
+  waitOn: function () {
+    if (!Meteor.user()) {
+      return [];
+    };
+    return Meteor.subscribe('serviceList');
+  },
+  template: 'services'
+});
+Router.route('/hosts', function () {
+    this.render('hosts');
+});
+Router.route('/mongos', function () {
+    this.render('mongos');
+});
+Router.route('/redis', function () {
+    this.render('redis');
+});
+
 //
 // Dashboards routes
 //

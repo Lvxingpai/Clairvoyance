@@ -1,0 +1,75 @@
+<template name="services">
+    <!-- Page heading -->
+    {{> pageHeading title='Foo Table' category='Tables' }}
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>FooTable with row toggler, sorting and pagination</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#">Config option 1</a>
+                                </li>
+                                <li><a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="3">
+                            <thead>
+                            <tr>
+                                <!-- <th data-toggle="true">Project</th> -->
+                                <th>Service</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th data-hide="all">Nodes</th>
+                                <th>Alarm</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each services}}
+	                            <tr>
+	                                <td>{{name}}</td>
+	                                <td>{{desc}}</td>
+	                                <td>{{status}}</td>
+	                                <td>
+	                                {{#each nodes}}
+	                                	<div>
+											<tr><td>ID:</td><td>{{id}}</td></tr>
+											<tr><td>Endpoint:</td><td>{{endpoint}}</td></tr>
+											<tr><td>Status:</td><td>{{status}}</td></tr>
+										</div>
+	                                {{/each}}
+	                                </td>
+	                                <td><a href="#"><i class="glyphicon glyphicon-bell"></i></a></td>
+	                            </tr>
+                            {{/each}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

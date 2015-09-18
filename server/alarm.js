@@ -15,6 +15,8 @@ var AlarmManagerClass = function(){
       // 根据validation来检测每个结点的服务状态
       var updateNodes = [];
       var serviceStatus = false;
+
+      // TODO 假如没有ping的，直接就显示成功就好了？
       _.each(serviceObj, function (node) {
         // 发送ping请求, TODO 其它类型请求的构造
         var responseData,
@@ -56,11 +58,15 @@ var AlarmManagerClass = function(){
       // 假如没有一个结点是ok的，则alert()
       if (! serviceStatus){
         self.serviceAlert(service);
+      } else{
+        if (! service.status || service.status != 'running') {
+          db.Service.update({'name': service.name}, {$set: {status: 'running'}}, {upsert: true});
+        }
       }
 
       // 更新数据库
-      db.Service.update({'_id': service._id}, {$set: {nodes: updateNodes}}, {upsert: true});
-    }, service.alert.interval * 1000/10);
+      db.Service.update({'name': service.name}, {$set: {nodes: updateNodes}}, {upsert: true});
+    }, service.alert.interval * 1000);
 
     this.alarmList[service.name] = {
       intervalId: intervalId,
@@ -115,6 +121,7 @@ var AlarmManagerClass = function(){
   // service状态达到警戒线的处理
   this.serviceAlert = function (service){
     var self = this;
+    db.Service.update({'name': service.name}, {$set: {status: 'stop'}}, {upsert: true});
 
     // 判断服务是否未到达警报时间间隔
     if (service.alert.lastTriggered && ((Date.now() - service.alert.lastTriggered) < this.alarmInterval)) {
@@ -142,16 +149,17 @@ var AlarmManagerClass = function(){
 
     // 发送警报
     _.each(users, function(username){
-      self.alertUser(username, alertPolicy[0]);
+      self.alertUser(service.name, username, alertPolicy[0]);
     })
 
+    console.log(service.name);
     // 更新时间警报
-    db.Service.update({'_id': service._id}, {$set: {'alert.lastTriggered': Date.now()}}, {upsert: true});
+    db.Service.update({'name': service.name}, {$set: {'alert.lastTriggered': Date.now()}}, {upsert: true});
     return ;
   };
 
   // 发送警报给user
-  this.alertUser = function (username, alertPolicy){
+  this.alertUser = function (servicename, username, alertPolicy){
     var user = Meteor.users.findOne({username: username});
 
     if (! user){
@@ -161,17 +169,17 @@ var AlarmManagerClass = function(){
 
     if (alertPolicy.action.indexOf('email') !== -1){
       console.log('send email');
-      self.sendAlertEmail(service.name, user.emails[0].address);
+      // this.sendAlertEmail(servicename, user.emails[0].address);
     }
 
     if (alertPolicy.action.indexOf('sms') !== -1){
       console.log('send sms');
-      self.sendAlertSms(service.name, user.profile.tel);
+      // this.sendAlertSms(servicename, user.profile.tel);
     }
   };
 
   // 发送警报邮件
-  // function sendEmail(serviceName, address ,error){
+  // function sendEmail(serviceName, address ,errorNumber){
   this.sendAlertEmail = function (serviceName, address){
     var send = Email.send({
       to: address,
