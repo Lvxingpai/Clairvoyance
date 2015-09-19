@@ -1,4 +1,4 @@
-Template.dataTables.rendered = function(){
+Template.dataTables.rendered = function () {
 
     // Initialize dataTables
     $('.dataTables-example').dataTable({

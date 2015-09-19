@@ -1,4 +1,4 @@
-Template.tableStatic.rendered = function(){
+Template.tableStatic.rendered = function () {
 
     // Initialize i-check plugin
     $('.i-checks').iCheck({
@@ -12,9 +12,9 @@ Template.tableStatic.rendered = function(){
         fill: ['#1ab394', '#d7d7d7', '#ffffff']
     });
 
-    $(".line").peity("line",{
+    $(".line").peity("line", {
         fill: '#1ab394',
-        stroke:'#169c81'
+        stroke: '#169c81'
     });
 
 };

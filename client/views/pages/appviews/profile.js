@@ -1,9 +1,9 @@
-Template.profile.rendered = function(){
+Template.profile.rendered = function () {
 
     // Set options for peity charts
-    $(".line").peity("line",{
+    $(".line").peity("line", {
         fill: '#1ab394',
-        stroke:'#169c81'
+        stroke: '#169c81'
     })
 
     $(".bar").peity("bar", {

@@ -1,11 +1,11 @@
-Template.video.rendered = function(){
+Template.video.rendered = function () {
 
     // Function for responsive video
 
     var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
         $fluidEl = $("figure");
 
-    $allVideos.each(function() {
+    $allVideos.each(function () {
         $(this)
             // jQuery .data does not work on object/embed elements
             .attr('data-aspectRatio', this.height / this.width)
@@ -13,9 +13,9 @@ Template.video.rendered = function(){
             .removeAttr('width');
     });
 
-    $(window).resize(function() {
+    $(window).resize(function () {
         var newWidth = $fluidEl.width();
-        $allVideos.each(function() {
+        $allVideos.each(function () {
             var $el = $(this);
             $el
                 .width(newWidth)

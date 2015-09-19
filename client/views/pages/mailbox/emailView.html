@@ -6,14 +6,20 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-content mailbox-content">
                         <div class="file-manager">
-                            <a class="btn btn-block btn-primary compose-mail" href="{{pathFor route='emailCompose'}}">Compose Mail</a>
+                            <a class="btn btn-block btn-primary compose-mail" href="{{pathFor route='emailCompose'}}">Compose
+                                Mail</a>
+
                             <div class="space-25"></div>
                             <h5>Folders</h5>
                             <ul class="folder-list m-b-md" style="padding: 0">
-                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning pull-right">16</span> </a></li>
-                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
-                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-certificate"></i> Important</a></li>
-                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger pull-right">2</span></a></li>
+                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-inbox "></i> Inbox <span
+                                        class="label label-warning pull-right">16</span> </a></li>
+                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-envelope-o"></i> Send
+                                    Mail</a></li>
+                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-certificate"></i>
+                                    Important</a></li>
+                                <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-file-text-o"></i> Drafts
+                                    <span class="label label-danger pull-right">2</span></a></li>
                                 <li><a href="{{pathFor route='mailbox'}}"> <i class="fa fa-trash-o"></i> Trash</a></li>
                             </ul>
                             <h5>Categories</h5>
@@ -44,13 +50,17 @@
             <div class="col-lg-9 animated fadeInRight">
                 <div class="mail-box-header">
                     <div class="pull-right tooltip-demo">
-                        <a href="{{pathFor route='emailCompose'}}" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Reply"><i class="fa fa-reply"></i> Reply</a>
-                        <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Print email"><i class="fa fa-print"></i> </a>
-                        <a href="{{pathFor route='mailbox'}}" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to trash"><i class="fa fa-trash-o"></i> </a>
+                        <a href="{{pathFor route='emailCompose'}}" class="btn btn-white btn-sm" data-toggle="tooltip"
+                           data-placement="top" title="Reply"><i class="fa fa-reply"></i> Reply</a>
+                        <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top"
+                           title="Print email"><i class="fa fa-print"></i> </a>
+                        <a href="{{pathFor route='mailbox'}}" class="btn btn-white btn-sm" data-toggle="tooltip"
+                           data-placement="top" title="Move to trash"><i class="fa fa-trash-o"></i> </a>
                     </div>
                     <h2>
                         View Message
                     </h2>
+
                     <div class="mail-tools tooltip-demo m-t-md">
 
 
@@ -71,16 +81,27 @@
                             Hello Jonathan!
                             <br/>
                             <br/>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                            took a galley of type and scrambled it to make a type <strong>specimen book.</strong>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                            took a galley of type and scrambled it to make a type <strong>specimen book.</strong>It was
+                            popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                            passages, and more recently with desktop publishing software like Aldus PageMaker including
+                            versions of Lorem Ipsum. It has survived not only five centuries, but also the leap into
+                            electronic typesetting, remaining
                             essentially unchanged.
                         </p>
+
                         <p>
-                            It was popularised in the 1960s with the release <a href="#" class="text-navy">Letraset sheets</a>  containing Lorem Ipsum passages, and more recently with desktop publishing software
+                            It was popularised in the 1960s with the release <a href="#" class="text-navy">Letraset
+                            sheets</a> containing Lorem Ipsum passages, and more recently with desktop publishing
+                            software
                             like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
+
                         <p>
-                            There are many variations of passages of <strong>Lorem Ipsum</strong>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of.
+                            There are many variations of passages of <strong>Lorem Ipsum</strong>Lorem Ipsum available,
+                            but the majority have suffered alteration in some form, by injected humour, or randomised
+                            words which don't look even slightly believable. If you are going to use a passage of.
                         </p>
                     </div>
                     <div class="mail-attachment">
@@ -146,10 +167,17 @@
                         </div>
                     </div>
                     <div class="mail-body text-right tooltip-demo">
-                        <a class="btn btn-sm btn-white" href="{{pathFor route='emailCompose'}}"><i class="fa fa-reply"></i> Reply</a>
-                        <a class="btn btn-sm btn-white" href="{{pathFor route='emailCompose'}}"><i class="fa fa-arrow-right"></i> Forward</a>
-                        <button title="" data-placement="top" data-toggle="tooltip" type="button" data-original-title="Print" class="btn btn-sm btn-white"><i class="fa fa-print"></i> Print</button>
-                        <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash" class="btn btn-sm btn-white"><i class="fa fa-trash-o"></i> Remove</button>
+                        <a class="btn btn-sm btn-white" href="{{pathFor route='emailCompose'}}"><i
+                                class="fa fa-reply"></i> Reply</a>
+                        <a class="btn btn-sm btn-white" href="{{pathFor route='emailCompose'}}"><i
+                                class="fa fa-arrow-right"></i> Forward</a>
+                        <button title="" data-placement="top" data-toggle="tooltip" type="button"
+                                data-original-title="Print" class="btn btn-sm btn-white"><i class="fa fa-print"></i>
+                            Print
+                        </button>
+                        <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash"
+                                class="btn btn-sm btn-white"><i class="fa fa-trash-o"></i> Remove
+                        </button>
                     </div>
                     <div class="clearfix"></div>
 

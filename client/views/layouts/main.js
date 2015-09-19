@@ -1,4 +1,4 @@
-Template.mainLayout.rendered = function(){
+Template.mainLayout.rendered = function () {
 
     // Minimalize menu when screen is less than 768px
     $(window).bind("resize load", function () {
@@ -10,18 +10,18 @@ Template.mainLayout.rendered = function(){
     });
 
     // Fix height of layout when resize, scroll and load
-    $(window).bind("load resize scroll", function() {
-        if(!$("body").hasClass('body-small')) {
+    $(window).bind("load resize scroll", function () {
+        if (!$("body").hasClass('body-small')) {
 
             var navbarHeigh = $('nav.navbar-default').height();
             var wrapperHeigh = $('#page-wrapper').height();
 
-            if(navbarHeigh > wrapperHeigh){
+            if (navbarHeigh > wrapperHeigh) {
                 $('#page-wrapper').css("min-height", navbarHeigh + "px");
             }
 
-            if(navbarHeigh < wrapperHeigh){
-                $('#page-wrapper').css("min-height", $(window).height()  + "px");
+            if (navbarHeigh < wrapperHeigh) {
+                $('#page-wrapper').css("min-height", $(window).height() + "px");
             }
 
             if ($('body').hasClass('fixed-nav')) {
@@ -52,12 +52,12 @@ Template.mainLayout.rendered = function(){
 };
 
 Template.mainLayout.events({
-  'click .logout': function(){
-    Meteor.logout(function(error){
-      if(error){
-        // TODO
-      }
-      Router.go('login');
-    });
-  }
+    'click .logout': function () {
+        Meteor.logout(function (error) {
+            if (error) {
+                // TODO
+            }
+            Router.go('login');
+        });
+    }
 })

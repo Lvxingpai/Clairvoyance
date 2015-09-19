@@ -1,4 +1,4 @@
-Template.formBasic.rendered = function(){
+Template.formBasic.rendered = function () {
 
     // Initialize i-check plugin
     $('.i-checks').iCheck({

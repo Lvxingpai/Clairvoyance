@@ -1,4 +1,4 @@
-Template.validation.rendered = function(){
+Template.validation.rendered = function () {
 
     // Set validation rules
 

@@ -1,4 +1,4 @@
-Template.calendar.rendered = function(){
+Template.calendar.rendered = function () {
 
     // Initialize i-check plugin
     $('.i-checks').iCheck({
@@ -7,7 +7,7 @@ Template.calendar.rendered = function(){
     });
 
     // Initialize the external events
-    $('#external-events div.external-event').each(function() {
+    $('#external-events div.external-event').each(function () {
 
         // store data so the calendar knows to render an event upon drop
         $(this).data('event', {
@@ -40,7 +40,7 @@ Template.calendar.rendered = function(){
         },
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
-        drop: function() {
+        drop: function () {
             // is the "remove after drop" checkbox checked?
             if ($('#drop-remove').is(':checked')) {
                 // if so, remove the element from the "Draggable Events" list
@@ -54,19 +54,19 @@ Template.calendar.rendered = function(){
             },
             {
                 title: 'Long Event',
-                start: new Date(y, m, d-5),
-                end: new Date(y, m, d-2),
+                start: new Date(y, m, d - 5),
+                end: new Date(y, m, d - 2),
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: new Date(y, m, d-3, 16, 0),
+                start: new Date(y, m, d - 3, 16, 0),
                 allDay: false,
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: new Date(y, m, d+4, 16, 0),
+                start: new Date(y, m, d + 4, 16, 0),
                 allDay: false
             },
             {
@@ -82,8 +82,8 @@ Template.calendar.rendered = function(){
             },
             {
                 title: 'Birthday Party',
-                start: new Date(y, m, d+1, 19, 0),
-                end: new Date(y, m, d+1, 22, 30),
+                start: new Date(y, m, d + 1, 19, 0),
+                end: new Date(y, m, d + 1, 22, 30),
                 allDay: false
             },
             {

@@ -1,4 +1,4 @@
-Template.nestableList.rendered = function(){
+Template.nestableList.rendered = function () {
 
     // Log for nestable list
     var updateOutput = function (e) {
@@ -29,7 +29,7 @@ Template.nestableList.rendered = function(){
 Template.nestableList.events({
 
     // Handle for expand and collapse buttons
-    'click #nestable-menu' : function(e){
+    'click #nestable-menu': function (e) {
         var target = $(e.target),
             action = target.data('action');
         if (action === 'expand-all') {
