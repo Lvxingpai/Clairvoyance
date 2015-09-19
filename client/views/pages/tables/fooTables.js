@@ -1,4 +1,4 @@
-Template.fooTables.rendered = function(){
+Template.fooTables.rendered = function () {
 
     // Initialize fooTable
     $('.footable').footable();

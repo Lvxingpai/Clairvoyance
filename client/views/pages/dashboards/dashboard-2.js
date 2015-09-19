@@ -1,4 +1,4 @@
-Template.dashboard2.rendered = function(){
+Template.dashboard2.rendered = function () {
 
     // Set white background color for top navbar
     $('body').addClass('light-navbar');
@@ -35,7 +35,7 @@ Template.dashboard2.rendered = function(){
                 show: true,
                 align: "center",
                 barWidth: 24 * 60 * 60 * 600,
-                lineWidth:0
+                lineWidth: 0
             }
 
         }, {
@@ -44,7 +44,7 @@ Template.dashboard2.rendered = function(){
             yaxis: 2,
             color: "#464f88",
             lines: {
-                lineWidth:1,
+                lineWidth: 1,
                 show: true,
                 fill: true,
                 fillColor: {
@@ -149,7 +149,7 @@ Template.dashboard2.rendered = function(){
     });
 };
 
-Template.dashboard2.destroyed = function(){
+Template.dashboard2.destroyed = function () {
     // Remove special class
     $('body').removeClass('light-navbar');
 };

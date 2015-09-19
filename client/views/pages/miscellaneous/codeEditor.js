@@ -1,4 +1,4 @@
-Template.codeEditor.rendered = function(){
+Template.codeEditor.rendered = function () {
 
     // Initialize codeMirror plugin
 
@@ -6,7 +6,7 @@ Template.codeEditor.rendered = function(){
         lineNumbers: true,
         matchBrackets: true,
         styleActiveLine: true,
-        theme:"ambiance"
+        theme: "ambiance"
     });
 
     var editor_two = CodeMirror.fromTextArea(document.getElementById("code2"), {

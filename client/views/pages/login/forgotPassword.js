@@ -1,3 +1,1 @@
-Template.forgotPassword.events({
-	
-})
+Template.forgotPassword.events({})

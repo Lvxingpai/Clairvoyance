@@ -1,4 +1,4 @@
-Template.mailbox.rendered = function(){
+Template.mailbox.rendered = function () {
 
     // Set white background color for top navbar
     $('body').addClass('light-navbar');
@@ -10,7 +10,7 @@ Template.mailbox.rendered = function(){
     });
 };
 
-Template.mailbox.destroyed = function(){
+Template.mailbox.destroyed = function () {
 
     // Remove special class for background color
     $('body').removeClass('light-navbar');

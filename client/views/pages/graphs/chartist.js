@@ -1,4 +1,4 @@
-Template.graphChartist.rendered = function(){
+Template.graphChartist.rendered = function () {
 
 
     // Simple line
@@ -20,26 +20,28 @@ Template.graphChartist.rendered = function(){
 
     // Line scatter diagram
 
-    var times = function(n) {
+    var times = function (n) {
         return Array.apply(null, new Array(n));
     };
 
-    var data = times(26).map(Math.random).reduce(function(data, rnd, index) {
+    var data = times(26).map(Math.random).reduce(function (data, rnd, index) {
         data.labels.push(index + 1);
-        data.series.forEach(function(series) {
+        data.series.forEach(function (series) {
             series.push(Math.random() * 100)
         });
 
         return data;
     }, {
         labels: [],
-        series: times(4).map(function() { return new Array() })
+        series: times(4).map(function () {
+            return new Array()
+        })
     });
 
     var options = {
         showLine: false,
         axisX: {
-            labelInterpolationFnc: function(value, index) {
+            labelInterpolationFnc: function (value, index) {
                 return index % 13 === 0 ? 'W' + value : null;
             }
         }
@@ -60,12 +62,12 @@ Template.graphChartist.rendered = function(){
     }, {
         stackBars: true,
         axisY: {
-            labelInterpolationFnc: function(value) {
+            labelInterpolationFnc: function (value) {
                 return (value / 1000) + 'k';
             }
         }
-    }).on('draw', function(data) {
-            if(data.type === 'bar') {
+    }).on('draw', function (data) {
+            if (data.type === 'bar') {
                 data.element.attr({
                     style: 'stroke-width: 30px'
                 });
@@ -97,10 +99,12 @@ Template.graphChartist.rendered = function(){
         series: [5, 3, 4]
     };
 
-    var sum = function(a, b) { return a + b };
+    var sum = function (a, b) {
+        return a + b
+    };
 
     new Chartist.Pie('#ct-chart5', data, {
-        labelInterpolationFnc: function(value) {
+        labelInterpolationFnc: function (value) {
             return Math.round(value / data.series.reduce(sum) * 100) + '%';
         }
     });

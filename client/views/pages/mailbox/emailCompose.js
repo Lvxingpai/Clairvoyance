@@ -1,4 +1,4 @@
-Template.emailCompose.rendered = function(){
+Template.emailCompose.rendered = function () {
 
     // Set white background color for top navbar
     $('body').addClass('light-navbar');
@@ -16,7 +16,7 @@ Template.emailCompose.rendered = function(){
 };
 
 
-Template.emailCompose.destroyed = function(){
+Template.emailCompose.destroyed = function () {
 
     // Remove special class for backgrount color
     $('body').removeClass('light-navbar');

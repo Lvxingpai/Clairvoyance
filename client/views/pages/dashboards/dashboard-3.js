@@ -1,5 +1,5 @@
 var i = 0;
-clock = function (){
+clock = function () {
     // console.log(i++);
     i++;
     if (i > 10)
@@ -10,14 +10,14 @@ var interval = setInterval('clock()', 500);
 var myLineChart;
 
 Template.dashboard3.events({
-    'click #btn': function(e){
+    'click #btn': function (e) {
         // myLineChart.addData([40, 60], "August");
         myLineChart.datasets[0].points[2].value = 50;
         myLineChart.update();
     }
 })
 
-Template.dashboard3.rendered = function(){
+Template.dashboard3.rendered = function () {
 
     // Set white background color for top navbar
     $('body').addClass('light-navbar');
@@ -83,9 +83,9 @@ Template.dashboard3.rendered = function(){
 
     // Set data and options for peity (small) charts
 
-    $(".line").peity("line",{
+    $(".line").peity("line", {
         fill: '#1ab394',
-        stroke:'#169c81'
+        stroke: '#169c81'
     });
 
     $(".bar").peity("bar", {
@@ -94,13 +94,13 @@ Template.dashboard3.rendered = function(){
 
     $(".bar_dashboard").peity("bar", {
         fill: ["#1ab394", "#d7d7d7"],
-        width:100
+        width: 100
     })
 
 
 };
 
-Template.dashboard3.destroyed = function(){
+Template.dashboard3.destroyed = function () {
 
     // Remove extra view class
     $('body').removeClass('light-navbar');
