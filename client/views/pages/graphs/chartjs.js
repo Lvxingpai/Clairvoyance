@@ -1,4 +1,4 @@
-Template.graphChartJs.rendered = function(){
+Template.graphChartJs.rendered = function () {
 
     // Data and options for charts
 

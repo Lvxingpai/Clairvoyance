@@ -6,28 +6,28 @@ smsCenter = new ThriftClass('smscenter', 'lxp-sms-thrift', ['SmsCenter']);
 smsCenter.createService();
 
 _.extend(smsCenter, {
-  sendSmsFunc: function(text, recipients){
-    try {
-      var result = this.SmsCenter.sendSms(text, recipients);
-      console.log('Success in sending msg to' + recipients);
-      return true;
-    } catch (e){
-      console.log('Failed in sendSms');
-      console.log(e);
-      return false;
-    }
-  },
+    sendSmsFunc: function (text, recipients) {
+        try {
+            var result = this.SmsCenter.sendSms(text, recipients);
+            console.log('Success in sending msg to' + recipients);
+            return true;
+        } catch (e) {
+            console.log('Failed in sendSms');
+            console.log(e);
+            return false;
+        }
+    },
 
-  pingFunc: function(){
-    try {
-      var result = this.SmsCenter._ping();
-      console.log('Success in ping smscenter');
-      console.log(result);
-      return result;
-    } catch (e){
-      console.log('Failed in ping smscenter');
-      console.log(e);
-      return false;
-    }
-  },
+    pingFunc: function () {
+        try {
+            var result = this.SmsCenter._ping();
+            console.log('Success in ping smscenter');
+            console.log(result);
+            return result;
+        } catch (e) {
+            console.log('Failed in ping smscenter');
+            console.log(e);
+            return false;
+        }
+    },
 })

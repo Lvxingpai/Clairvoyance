@@ -2,11 +2,11 @@ Template.toastrNotification.events({
 
     // Handle notifications buttons
 
-    'click #showsimple' : function(){
-        toastr.success('Without any options','Simple notification!')
+    'click #showsimple': function () {
+        toastr.success('Without any options', 'Simple notification!')
     },
 
-    'click #showtoast' : function(){
+    'click #showtoast': function () {
         var i = -1;
         var toastCount = 0;
         var $toastlast;
@@ -77,7 +77,7 @@ Template.toastrNotification.events({
         toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
     },
 
-    'click #cleartoasts' : function(){
+    'click #cleartoasts': function () {
         toastr.clear()
     }
 

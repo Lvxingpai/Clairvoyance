@@ -5,17 +5,17 @@ Router.configure({
 });
 
 // 判断是否登录
-var requireLogin = function() {
-  if (!Meteor.userId()) {
-    Router.go('login');
-  } else {
-    this.next();
-  }
+var requireLogin = function () {
+    if (!Meteor.userId()) {
+        Router.go('login');
+    } else {
+        this.next();
+    }
 };
 
 // 所有页面都需要登录才可以进入
 Router.onBeforeAction(requireLogin, {
-  except: ['login', 'register', 'forgetPassword', ]
+    except: ['login', 'register', 'forgetPassword',]
 });
 
 
@@ -24,14 +24,15 @@ Router.onBeforeAction(requireLogin, {
 //
 
 Router.route('/services', {
-  name: 'services',
-  waitOn: function () {
-    if (!Meteor.user()) {
-      return [];
-    };
-    return Meteor.subscribe('serviceList');
-  },
-  template: 'services'
+    name: 'services',
+    waitOn: function () {
+        if (!Meteor.user()) {
+            return [];
+        }
+        ;
+        return Meteor.subscribe('serviceList');
+    },
+    template: 'services'
 });
 Router.route('/hosts', function () {
     this.render('hosts');

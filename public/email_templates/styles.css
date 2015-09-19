@@ -82,9 +82,11 @@ body {
     color: #999;
     padding: 20px;
 }
+
 .footer a {
     color: #999;
 }
+
 .footer p, .footer a, .footer unsubscribe, .footer td {
     font-size: 12px;
 }
@@ -122,6 +124,7 @@ p, ul, ol {
     margin-bottom: 10px;
     font-weight: normal;
 }
+
 p li, ul li, ol li {
     margin-left: 5px;
     list-style-position: inside;
@@ -189,18 +192,22 @@ a {
     text-align: center;
     border-radius: 3px 3px 0 0;
 }
+
 .alert a {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
 }
+
 .alert.alert-warning {
     background: #f8ac59;
 }
+
 .alert.alert-bad {
     background: #ed5565;
 }
+
 .alert.alert-good {
     background: #1ab394;
 }
@@ -214,15 +221,19 @@ a {
     text-align: left;
     width: 80%;
 }
+
 .invoice td {
     padding: 5px 0;
 }
+
 .invoice .invoice-items {
     width: 100%;
 }
+
 .invoice .invoice-items td {
     border-top: #eee 1px solid;
 }
+
 .invoice .invoice-items .total td {
     border-top: 2px solid #333;
     border-bottom: 2px solid #333;

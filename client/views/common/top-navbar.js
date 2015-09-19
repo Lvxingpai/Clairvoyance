@@ -1,4 +1,4 @@
-Template.topNavbar.rendered = function(){
+Template.topNavbar.rendered = function () {
 
     // FIXED TOP NAVBAR OPTION
     // Uncomment this if you want to have fixed top navbar
@@ -10,7 +10,7 @@ Template.topNavbar.rendered = function(){
 Template.topNavbar.events({
 
     // Toggle left navigation
-    'click #navbar-minimalize': function(event){
+    'click #navbar-minimalize': function (event) {
 
         event.preventDefault();
 
@@ -39,7 +39,7 @@ Template.topNavbar.events({
     },
 
     // Toggle right sidebar
-    'click .right-sidebar-toggle': function(){
+    'click .right-sidebar-toggle': function () {
         $('#right-sidebar').toggleClass('sidebar-open');
     }
 });

@@ -1,4 +1,4 @@
-Template.dashboard4l.rendered = function(){
+Template.dashboard4l.rendered = function () {
 
 
     // Set white background color for top navbar
@@ -8,8 +8,8 @@ Template.dashboard4l.rendered = function(){
     var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
 
     var data1 = [
-        { label: "Data 1", data: d1, color: '#17a084'},
-        { label: "Data 2", data: d2, color: '#127e68' }
+        {label: "Data 1", data: d1, color: '#17a084'},
+        {label: "Data 2", data: d2, color: '#127e68'}
     ];
 
     $.plot($("#flot-chart1"), data1, {
@@ -94,7 +94,7 @@ Template.dashboard4l.rendered = function(){
     })
 };
 
-Template.dashboard4l.destroyed = function(){
+Template.dashboard4l.destroyed = function () {
 
     // Remove extra view class
     $('body').removeClass('light-navbar');

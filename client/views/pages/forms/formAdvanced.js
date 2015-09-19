@@ -1,4 +1,4 @@
-Template.formAdvanced.rendered = function(){
+Template.formAdvanced.rendered = function () {
 
     // Set options for cropper plugin
 
@@ -6,14 +6,14 @@ Template.formAdvanced.rendered = function(){
     $($image).cropper({
         aspectRatio: 1.618,
         preview: ".img-preview",
-        done: function(data) {
+        done: function (data) {
             // Output the result data for cropping image.
         }
     });
 
     var $inputImage = $("#inputImage");
     if (window.FileReader) {
-        $inputImage.change(function() {
+        $inputImage.change(function () {
             var fileReader = new FileReader(),
                 files = this.files,
                 file;
@@ -38,27 +38,27 @@ Template.formAdvanced.rendered = function(){
         $inputImage.addClass("hide");
     }
 
-    $("#download").click(function() {
+    $("#download").click(function () {
         window.open($image.cropper("getDataURL"));
     });
 
-    $("#zoomIn").click(function() {
+    $("#zoomIn").click(function () {
         $image.cropper("zoom", 0.1);
     });
 
-    $("#zoomOut").click(function() {
+    $("#zoomOut").click(function () {
         $image.cropper("zoom", -0.1);
     });
 
-    $("#rotateLeft").click(function() {
+    $("#rotateLeft").click(function () {
         $image.cropper("rotate", 45);
     });
 
-    $("#rotateRight").click(function() {
+    $("#rotateRight").click(function () {
         $image.cropper("rotate", -45);
     });
 
-    $("#setDrag").click(function() {
+    $("#setDrag").click(function () {
         $image.cropper("setDragMode", "crop");
     });
 
@@ -106,13 +106,13 @@ Template.formAdvanced.rendered = function(){
     // Initialize switchery
 
     var elem = document.querySelector('.js-switch');
-    var switchery = new Switchery(elem, { color: '#1AB394' });
+    var switchery = new Switchery(elem, {color: '#1AB394'});
 
     var elem_2 = document.querySelector('.js-switch_2');
-    var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
+    var switchery_2 = new Switchery(elem_2, {color: '#ED5565'});
 
     var elem_3 = document.querySelector('.js-switch_3');
-    var switchery_3 = new Switchery(elem_3, { color: '#1AB394' });
+    var switchery_3 = new Switchery(elem_3, {color: '#1AB394'});
 
     $('.i-checks').iCheck({
         checkboxClass: 'icheckbox_square-green',
@@ -127,16 +127,16 @@ Template.formAdvanced.rendered = function(){
     var divStyle = $('.back-change')[0].style;
     $('#demo_apidemo').colorpicker({
         color: divStyle.backgroundColor
-    }).on('changeColor', function(ev) {
+    }).on('changeColor', function (ev) {
         divStyle.backgroundColor = ev.color.toHex();
     });
 
     var config = {
-        '.chosen-select'           : {},
-        '.chosen-select-deselect'  : {allow_single_deselect:true},
-        '.chosen-select-no-single' : {disable_search_threshold:10},
-        '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-        '.chosen-select-width'     : {width:"95%"}
+        '.chosen-select': {},
+        '.chosen-select-deselect': {allow_single_deselect: true},
+        '.chosen-select-no-single': {disable_search_threshold: 10},
+        '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!'},
+        '.chosen-select-width': {width: "95%"}
     }
     for (var selector in config) {
         $(selector).chosen(config[selector]);
@@ -204,28 +204,28 @@ Template.formAdvanced.rendered = function(){
         behaviour: 'tap',
         connect: 'upper',
         range: {
-            'min':  20,
-            'max':  80
+            'min': 20,
+            'max': 80
         }
     });
 
     $("#range_slider").noUiSlider({
-        start: [ 40, 60 ],
+        start: [40, 60],
         behaviour: 'drag',
         connect: true,
         range: {
-            'min':  20,
-            'max':  80
+            'min': 20,
+            'max': 80
         }
     });
 
     $("#drag-fixed").noUiSlider({
-        start: [ 40, 60 ],
+        start: [40, 60],
         behaviour: 'drag-fixed',
         connect: true,
         range: {
-            'min':  20,
-            'max':  80
+            'min': 20,
+            'max': 80
         }
     });
 
@@ -242,7 +242,7 @@ Template.formAdvanced.rendered = function(){
         endDate: moment(),
         minDate: '01/01/2012',
         maxDate: '12/31/2015',
-        dateLimit: { days: 60 },
+        dateLimit: {days: 60},
         showDropdowns: true,
         showWeekNumbers: true,
         timePicker: false,
@@ -268,11 +268,11 @@ Template.formAdvanced.rendered = function(){
             fromLabel: 'From',
             toLabel: 'To',
             customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
             monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             firstDay: 1
         }
-    }, function(start, end, label) {
+    }, function (start, end, label) {
         console.log(start.toISOString(), end.toISOString(), label);
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
     });

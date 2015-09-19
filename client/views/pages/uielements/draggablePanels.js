@@ -1,4 +1,4 @@
-Template.draggablePanels.rendered = function(){
+Template.draggablePanels.rendered = function () {
 
     // Set options for sortable
 

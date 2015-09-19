@@ -1,4 +1,4 @@
-Template.offCanvas.rendered = function(){
+Template.offCanvas.rendered = function () {
 
     // Add special class for off canvas menu layout
     $('body').addClass('canvas-menu');
@@ -11,7 +11,7 @@ Template.offCanvas.rendered = function(){
 
 };
 
-Template.offCanvas.destroyed = function(){
+Template.offCanvas.destroyed = function () {
 
     // Remove special off canvas class
     $('body').removeClass('canvas-menu');
@@ -19,7 +19,7 @@ Template.offCanvas.destroyed = function(){
 
     // Destroy slim scroll from left navigation
     $('.sidebar-collapse').slimScroll({
-        destroy:true
+        destroy: true
     });
 
     // Remove inline style form slimScroll

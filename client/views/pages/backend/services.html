@@ -42,21 +42,30 @@
                             </thead>
                             <tbody>
                             {{#each services}}
-	                            <tr>
-	                                <td>{{name}}</td>
-	                                <td>{{desc}}</td>
-	                                <td>{{status}}</td>
-	                                <td>
-	                                {{#each nodes}}
-	                                	<div>
-											<tr><td>ID:</td><td>{{id}}</td></tr>
-											<tr><td>Endpoint:</td><td>{{endpoint}}</td></tr>
-											<tr><td>Status:</td><td>{{status}}</td></tr>
-										</div>
-	                                {{/each}}
-	                                </td>
-	                                <td><a href="#"><i class="glyphicon glyphicon-bell"></i></a></td>
-	                            </tr>
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{desc}}</td>
+                                    <td>{{status}}</td>
+                                    <td>
+                                        {{#each nodes}}
+                                            <div>
+                                                <tr>
+                                                    <td>ID:</td>
+                                                    <td>{{id}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Endpoint:</td>
+                                                    <td>{{endpoint}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status:</td>
+                                                    <td>{{status}}</td>
+                                                </tr>
+                                            </div>
+                                        {{/each}}
+                                    </td>
+                                    <td><a href="#"><i class="glyphicon glyphicon-bell"></i></a></td>
+                                </tr>
                             {{/each}}
                             </tbody>
                             <tfoot>

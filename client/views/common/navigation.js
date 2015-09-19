@@ -1,4 +1,4 @@
-Template.navigation.rendered = function(){
+Template.navigation.rendered = function () {
 
     // Initialize metisMenu
     $('#side-menu').metisMenu();
@@ -8,7 +8,7 @@ Template.navigation.rendered = function(){
 // Used only on OffCanvas layout
 Template.navigation.events({
 
-    'click .close-canvas-menu' : function(){
+    'click .close-canvas-menu': function () {
         $('body').toggleClass("mini-navbar");
     }
 });

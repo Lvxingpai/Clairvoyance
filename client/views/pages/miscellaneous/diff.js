@@ -1,4 +1,4 @@
-Template.diff.rendered = function(){
+Template.diff.rendered = function () {
 
     // Initial diff1
     $(".diff-wrapper").prettyTextDiff({
@@ -18,7 +18,7 @@ Template.diff.rendered = function(){
 Template.diff.events({
 
     // Handle changes on diff 2 example
-    'change .diff-textarea, keyup .diff-textarea': function(){
+    'change .diff-textarea, keyup .diff-textarea': function () {
         $(".diff-wrapper2").prettyTextDiff({
             originalContent: $('#original').val(),
             changedContent: $('#changed').val(),
