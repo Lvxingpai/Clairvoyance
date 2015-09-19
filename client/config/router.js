@@ -5,7 +5,7 @@ Router.configure({
 });
 
 // 判断是否登录
-var requireLogin = function () {
+var requireLogin = function (data) {
     if (!Meteor.userId()) {
         Router.go('login');
     } else {
@@ -15,9 +15,8 @@ var requireLogin = function () {
 
 // 所有页面都需要登录才可以进入
 Router.onBeforeAction(requireLogin, {
-    except: ['login', 'register', 'forgetPassword',]
+    except: ['login', 'register', 'forgetPassword', 'signup']
 });
-
 
 //
 // Backend Service routes
@@ -29,7 +28,6 @@ Router.route('/services', {
         if (!Meteor.user()) {
             return [];
         }
-        ;
         return Meteor.subscribe('serviceList');
     },
     template: 'services'
@@ -271,9 +269,28 @@ Router.route('/forgotPassword', function () {
     this.layout('blankLayout')
 });
 
-Router.route('/register', function () {
-    this.render('register');
-    this.layout('blankLayout')
+Router.route('/register', function (request) {
+    // 用户注册需要邀请链接
+    var router = this;
+
+    router.layout("blankLayout");
+
+    var token = function (name, url) {
+        var match = new RegExp('[?&]' + name + '=([^&]*)').exec(url);
+        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }("token", request.url);
+
+    Meteor.call("checkRegisterToken", token, function (err, ret) {
+        if (err) {
+            console.log(err);
+        } else {
+            if (ret) {
+                router.render("register");
+            } else {
+                Router.go("login");
+            }
+        }
+    });
 });
 
 Router.route('/errorOne', function () {
