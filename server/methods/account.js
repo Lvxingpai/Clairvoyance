@@ -1,7 +1,7 @@
 /**
- * 定义Meteor.methods
+ * 和账户系统相关的Meteor.methods
  *
- * Created by zephyre on 9/19/15.
+ * Created by zephyre on 9/20/15.
  */
 
 Meteor.methods({
@@ -11,7 +11,7 @@ Meteor.methods({
      * @param token
      * @returns {boolean}
      */
-    "checkRegisterToken": function (token) {
+    "account.checkSignUpToken": function (token) {
         if (token == undefined) {
             return false;
         } else {

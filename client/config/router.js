@@ -280,7 +280,7 @@ Router.route('/register', function (request) {
         return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     }("token", request.url);
 
-    Meteor.call("checkRegisterToken", token, function (err, ret) {
+    Meteor.call("account.checkSignUpToken", token, function (err, ret) {
         if (err) {
             console.log(err);
         } else {
