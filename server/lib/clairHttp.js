@@ -8,23 +8,30 @@ ClairHttp = (function () {
     /**
      * 以GET形式, 访问urls列表, 并返回第一个成功的响应(Future形式).
      * @param urls
+     * @param options
+     * @param errback 错误回调函数, 用来处理出错的情况
      * @returns {*}
      */
-    var clusterHttpGet = function (urls) {
+    var clusteredHttpGet = function (urls, options, errback) {
         var future = new Future();
 
         // 改写callback
         var modCallback = function (error, result) {
             if (error) {
-                console.log("Error occured: " + error);
-                if (urls.length > 0) {
-                    // 尝试新的服务端口
-                    var url = urls.pop();
-                    console.log("Try another url: " + url);
-                    HTTP.get(url, modCallback);
+                // 挽救机制
+                if (errback != undefined && errback(error, result).rescued) {
+                    future.return(result);
                 } else {
-                    console.log("Throwing: " + error);
-                    future.throw(error);
+                    console.log("Error occured: " + error);
+                    if (urls.length > 0) {
+                        // 尝试新的服务端口
+                        var url = urls.pop();
+                        console.log("Try another url: " + url);
+                        HTTP.get(url, options, modCallback);
+                    } else {
+                        console.log("Throwing: " + error);
+                        future.throw(error);
+                    }
                 }
             } else {
                 console.log("Success: " + result);
@@ -34,13 +41,13 @@ ClairHttp = (function () {
 
         var url = urls.pop();
         console.log("Fetching: " + url);
-        HTTP.get(url, modCallback);
+        HTTP.get(url, options, modCallback);
 
         return future;
     };
 
     return {
-        "clusterHttpGet": clusterHttpGet
+        "clusteredHttpGet": clusteredHttpGet
     };
 
 })();
