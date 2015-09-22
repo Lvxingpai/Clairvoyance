@@ -8,9 +8,10 @@ var Future = Npm.require('fibers/future');
 
 
 EtcdHelper = (function () {
-
     var EtcdBaseBuilder = function (serverAddresses) {
-        if (typeof serverAddresses == "string")
+        if (serverAddresses == undefined) {
+            this.serverAddresses = [];
+        } else if (typeof serverAddresses == "string")
             this.serverAddresses = [serverAddresses];
         else if (Array.isArray(serverAddresses))
             this.serverAddresses = serverAddresses;

@@ -8,6 +8,7 @@ var AlarmManagerClass = function () {
     // 根据一个service建立一个alarm对象
     this.createAlarm = function (service) {
         var self = this;
+        var interval = service.alert.interval || 60;
         var intervalId = Meteor.setInterval(function () {
             // etcd中查找服务
             var serviceObj = self._getEtcdServiceNode(service);
@@ -42,7 +43,7 @@ var AlarmManagerClass = function () {
                 }
 
                 // 检测返回的数据的正确性
-                if (responseData && self._validateResponse(service.alert.validation, responseData)) {
+                if (responseData && self._validateResponse(service.alert.ping.validation, responseData)) {
                     nodeStatus = 'OK';
                     serviceStatus = true;
                 }
@@ -66,7 +67,7 @@ var AlarmManagerClass = function () {
 
             // 更新数据库
             db.Service.update({'name': service.name}, {$set: {nodes: updateNodes}}, {upsert: true});
-        }, service.alert.interval * 1000);
+        }, interval * 1000);
 
         this.alarmList[service.name] = {
             intervalId: intervalId,
@@ -198,6 +199,16 @@ var AlarmManagerClass = function () {
         var send = smsCenter.sendSmsFunc(text, [tel]);
         return send;
     };
+
+    // 删除一个警报器
+    this.deleteAlarm = function (service){
+        if (this.alarmList[service.name]){
+            clearInterval(this.alarmList[service.name].intervalId);
+            this.alarmList[service.name] = undefined;
+            return true;
+        }
+        return false;
+    }
 }
 
 AlarmManager = new AlarmManagerClass();
@@ -207,4 +218,17 @@ function getGroupUsers(group) {
     // TODO 根据group在users collection中查找相应的user
     return [];
 }
+
+Meteor.methods({
+    'alarm.deleteAlarm': function(service){
+        check(service, Object);
+        return AlarmManager.deleteAlarm(service);
+    },
+
+    //栈溢出...
+    //'alarm.createAlarm': function(service){
+    //    check(service, Object);
+    //    return AlarmManager.createAlarm(service);
+    //}
+})
 

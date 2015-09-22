@@ -1,6 +1,6 @@
 <template name="services">
     <!-- Page heading -->
-    {{> pageHeading title='Foo Table' category='Tables' }}
+    {{> pageHeading title='Service List' category='Backend Service' }}
 
     <div class="wrapper wrapper-content animated fadeInRight">
 
@@ -8,7 +8,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>FooTable with row toggler, sorting and pagination</h5>
+                        <h5>Service list</h5>
 
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -18,10 +18,8 @@
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#">Config option 1</a>
-                                </li>
-                                <li><a href="#">Config option 2</a>
-                                </li>
+                                <li><a href="#" id="addService">添加服务监控</a></li>
+                                <li><a href="#" id="deleteService">删除服务监控</a></li>
                             </ul>
                             <a class="close-link">
                                 <i class="fa fa-times"></i>
@@ -29,7 +27,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="3">
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="6">
                             <thead>
                             <tr>
                                 <!-- <th data-toggle="true">Project</th> -->

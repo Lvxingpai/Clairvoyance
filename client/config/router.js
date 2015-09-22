@@ -28,8 +28,8 @@ Router.route('/services', {
     waitOn: function () {
         if (!Meteor.user()) {
             return [];
-        }
-        ;
+        };
+        Meteor.subscribe('alertPolicyList');
         return Meteor.subscribe('serviceList');
     },
     template: 'services'
