@@ -93,17 +93,4 @@ EtcdClass = function (etcdUrl) {
     };
 };
 
-// 获取etcd的后台服务列表, 单例模式
-Etcd = new EtcdClass(config.ETCD_URL);
-_.extend(Etcd, {
-    data: {
-        'project-conf': Etcd.callEtcd('project-conf'),
-        'backends': Etcd.callEtcd('backends')
-    }
-})
-
-// 检查etcd的后台服务列表是否为空
-if (!Etcd.data['backends']) {
-    console.log('未获取到后台服务列表，请检查etcd！');
-}
 

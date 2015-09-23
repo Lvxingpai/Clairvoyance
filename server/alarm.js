@@ -1,7 +1,6 @@
-var db = config.db;
-
 // 监控管理器
-var AlarmManagerClass = function () {
+AlarmManagerClass = function () {
+    var db = config.db;
     this.alarmList = {};//记录每个服务与对应的timer
     this.alarmInterval = 6 * 60 * 60 * 1000;//警报间隔
 
@@ -196,7 +195,7 @@ var AlarmManagerClass = function () {
     // 发送警报短信
     this.sendAlertSms = function (serviceName, tel) {
         var text = serviceName + '服务出现错误';
-        var send = smsCenter.sendSmsFunc(text, [tel]);
+        var send = Meteor.call('smsCenter.sendSmsFunc', text, [tel]);
         return send;
     };
 
@@ -211,8 +210,6 @@ var AlarmManagerClass = function () {
     }
 }
 
-AlarmManager = new AlarmManagerClass();
-
 // 根据组名，获取用户
 function getGroupUsers(group) {
     // TODO 根据group在users collection中查找相应的user
@@ -225,7 +222,7 @@ Meteor.methods({
         return AlarmManager.deleteAlarm(service);
     },
 
-    //栈溢出...
+    //栈溢出...先直接调用AlarmManeger
     //'alarm.createAlarm': function(service){
     //    check(service, Object);
     //    return AlarmManager.createAlarm(service);
