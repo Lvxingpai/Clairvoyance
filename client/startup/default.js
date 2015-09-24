@@ -1,10 +1,10 @@
 // Run this when the meteor app is started
 config = new Object();
-config.db = {};
+DB = {};
 
 Meteor.startup(function () {
-    config.db.Service = new Mongo.Collection("Service");
-    config.db.AlertPolicy = new Mongo.Collection("AlertPolicy");
+    DB.Service = new Mongo.Collection("Service");
+    DB.AlertPolicy = new Mongo.Collection("AlertPolicy");
 });
 
 

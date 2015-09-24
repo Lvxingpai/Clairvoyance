@@ -1,11 +1,11 @@
 Meteor.publish("serviceList", function () {
-    return config.db.Service.find({});
+    return DB.Service.find({});
 });
 
 Meteor.methods({
     'service.addService': function(service){
         check(service, Object);
-        if (config.db.Service.findOne({'name': service.name})){
+        if (DB.Service.findOne({'name': service.name})){
             console.log('err1');
             return {
                 status: false,
@@ -36,7 +36,7 @@ Meteor.methods({
                 }
             }
         };
-        config.db.Service.insert(service);
+        DB.Service.insert(service);
         var res = AlarmManager.createAlarm(service);
         if (! res) {
             return {
@@ -75,7 +75,7 @@ Meteor.methods({
                 }
             }
         }
-        config.db.Service.remove({
+        DB.Service.remove({
             name: service.name
         });
         return {
@@ -86,7 +86,7 @@ Meteor.methods({
     'service.setAlertPolicy': function(serviceName, serviceAlert){
         check(serviceName, String);
         check(serviceAlert, Object);
-        config.db.Service.update({'name': serviceName}, {$set: {alert: serviceAlert}}, {upsert: true});
+        DB.Service.update({'name': serviceName}, {$set: {alert: serviceAlert}}, {upsert: true});
         return {
             status: true
         };

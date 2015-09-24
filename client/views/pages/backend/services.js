@@ -5,7 +5,7 @@ Template.services.helpers({
                 $('.footable').trigger('footable_initialize');
             }, 1000);
         };
-        return config.db.Service.find({}).fetch();
+        return DB.Service.find({}).fetch();
     }
 })
 
@@ -33,7 +33,7 @@ Template.services.events({
             };
             isChecked = 'checked';
         }
-        alert.policyList = _.map(config.db.AlertPolicy.find({}).fetch(), function (alertPolicy) {
+        alert.policyList = _.map(DB.AlertPolicy.find({}).fetch(), function (alertPolicy) {
             return _.extend(alertPolicy, {
                 isChecked: (alertPolicy.name === policy) ? 'checked' : ''
             });

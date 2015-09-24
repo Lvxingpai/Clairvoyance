@@ -1,6 +1,6 @@
+// 还在使用旧的etcd类
 // 监控管理器
 AlarmManagerClass = function () {
-    var db = config.db;
     this.alarmList = {};//记录每个服务与对应的timer
     this.alarmInterval = 6 * 60 * 60 * 1000;//警报间隔
 
@@ -60,12 +60,12 @@ AlarmManagerClass = function () {
                 self.serviceAlert(service);
             } else {
                 if (!service.status || service.status != 'running') {
-                    db.Service.update({'name': service.name}, {$set: {status: 'running'}}, {upsert: true});
+                    DB.Service.update({'name': service.name}, {$set: {status: 'running'}}, {upsert: true});
                 }
             }
 
             // 更新数据库
-            db.Service.update({'name': service.name}, {$set: {nodes: updateNodes}}, {upsert: true});
+            DB.Service.update({'name': service.name}, {$set: {nodes: updateNodes}}, {upsert: true});
         }, interval * 1000);
 
         this.alarmList[service.name] = {
@@ -121,7 +121,7 @@ AlarmManagerClass = function () {
     // service状态达到警戒线的处理
     this.serviceAlert = function (service) {
         var self = this;
-        db.Service.update({'name': service.name}, {$set: {status: 'stop'}}, {upsert: true});
+        DB.Service.update({'name': service.name}, {$set: {status: 'stop'}}, {upsert: true});
 
         // 判断服务是否未到达警报时间间隔
         if (service.alert.lastTriggered && ((Date.now() - service.alert.lastTriggered) < this.alarmInterval)) {
@@ -129,7 +129,7 @@ AlarmManagerClass = function () {
             return;
         }
 
-        var alertPolicy = db.AlertPolicy.find({name: service.alert.policy}).fetch();
+        var alertPolicy = DB.AlertPolicy.find({name: service.alert.policy}).fetch();
         if (alertPolicy.length > 1) {
             console.log('AlertPolicy出现重复的 ' + service.alert.policy);
         }
@@ -154,7 +154,7 @@ AlarmManagerClass = function () {
 
         console.log(service.name);
         // 更新时间警报
-        db.Service.update({'name': service.name}, {$set: {'alert.lastTriggered': Date.now()}}, {upsert: true});
+        DB.Service.update({'name': service.name}, {$set: {'alert.lastTriggered': Date.now()}}, {upsert: true});
         return;
     };
 
