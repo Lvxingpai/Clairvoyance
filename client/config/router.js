@@ -34,8 +34,17 @@ Router.route('/services', {
     },
     template: 'services'
 });
-Router.route('/hosts', function () {
-    this.render('hosts');
+
+Router.route('/hosts', {
+    name: 'hosts',
+    waitOn: function () {
+        if (!Meteor.user()) {
+            return [];
+        };
+        Meteor.subscribe('alertPolicyList');
+        return Meteor.subscribe('serviceList');
+    },
+    template: 'hosts'
 });
 Router.route('/mongos', function () {
     this.render('mongos');

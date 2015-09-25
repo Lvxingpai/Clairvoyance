@@ -1,0 +1,63 @@
+<template name="hosts">
+    <!-- Page heading -->
+  {{> pageHeading title='Monitors of Hosts' category='Backend Service' }}
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Host list</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <!--<li><a href="#" id="addService">添加服务监控</a></li>-->
+                                <!--<li><a href="#" id="deleteService">删除服务监控</a></li>-->
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="6">
+                            <thead>
+                            <tr>
+                                <!-- <th data-toggle="true">Project</th> -->
+                                <th></th>
+                                <th>ID</th>
+                                <th>Description</th>
+                                <th>IP</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--{{#each services}}-->
+                                <!--<tr>-->
+                                    <!--<td>{{name}}</td>-->
+                                    <!--<td>{{desc}}</td>-->
+                                    <!--<td>{{status}}</td>-->
+                                <!--</tr>-->
+                            <!--{{/each}}-->
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
