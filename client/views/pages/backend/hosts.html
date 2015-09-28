@@ -32,11 +32,11 @@
                                 <th></th>
                                 <th>Name</th>
                                 <th>ID</th>
-                                <th>Type</th>
-                                <!--<th>IP</th>-->
+                                <th data-hide="all">Type</th>
+                                <th>IP(vxnet)</th>
                                 <th>Status</th>
-                                <th>Description</th>
-                                <th>Create Time</th>
+                                <th data-hide="all">Description</th>
+                                <th data-hide="all">Create Time</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -46,6 +46,7 @@
                                     <td>{{instance_name}}</td>
                                     <td>{{instance_id}}</td>
                                     <td>{{instance_type}}</td>
+                                    <td>{{vx_ip}}</td>
                                     <td>{{status}}</td>
                                     <td>{{description}}</td>
                                     <td>{{create_time}}</td>
@@ -55,6 +56,14 @@
                             <tfoot>
                             <tr>
                                 <td colspan="7">
+                                    <label>Select Time: </label>
+                                    <select>
+                                        <option>Last 1 hour</option>
+                                        <option>Last 6 hours</option>
+                                        <option>Last week</option>
+                                        <option>Last month</option>
+                                        <option>Last 6 months</option>
+                                    </select>
                                     <ul class="pagination pull-right"></ul>
                                 </td>
                             </tr>
