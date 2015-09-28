@@ -1,3 +1,4 @@
+var Future = Npm.require('fibers/future');
 // 当前并不执行，只有在server运行时才执行，相当于运行前的初始化准备
 Meteor.startup(function () {
     // 获取etcd的后台服务列表
@@ -14,30 +15,9 @@ Meteor.startup(function () {
 
     // TODO 封装一个QingCloud以供使用 => 用meteor method来封装
     // 引入qingcloud的API
-    var qing = Meteor.npmRequire('lxp-qingcloud');
-    qing['access_key_id'] = Config.qingcloud.accessKey;
-    qing['secret_access_key'] = Config.qingcloud.secretKey;
-
-    //qing.DescribeInstances({zone: 'pek2'}, function(err, data){
-    //    if(err)
-    //        console.log(err.message);
-    //    else
-    //        console.log(data);
-    //});
-
-    qing.GetMonitor({
-        zone: 'pek2',
-        resource: 'i-mq0zy1mx', //资源的ID
-        'meters.n': ['cpu', 'memory', 'disk-os', 'disk-iops-os', 'disk-us-os'], //监控项
-        step: '15m', //数据间隔时间
-        start_time: '2015-09-10T11:07:00.520Z',
-        end_time: '2015-09-10T19:07:00.520Z'
-    }, function(err, data){
-        if(err)
-            console.log(err.message);
-        else
-            console.log(data);
-    });
+    Qing = Meteor.npmRequire('lxp-qingcloud');
+    Qing['access_key_id'] = Config.qingcloud.accessKey;
+    Qing['secret_access_key'] = Config.qingcloud.secretKey;
 
     // 设置session过期日期为一天
     Accounts.config({

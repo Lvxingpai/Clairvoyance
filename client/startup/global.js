@@ -5,6 +5,7 @@ DB = {};
 Meteor.startup(function () {
     DB.Service = new Mongo.Collection("Service");
     DB.AlertPolicy = new Mongo.Collection("AlertPolicy");
+    DB.Host = new Mongo.Collection('Host');
 });
 
 

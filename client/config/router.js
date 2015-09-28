@@ -41,8 +41,8 @@ Router.route('/hosts', {
         if (!Meteor.user()) {
             return [];
         };
-        Meteor.subscribe('alertPolicyList');
-        return Meteor.subscribe('serviceList');
+        Meteor.subscribe('hostDesc');
+        return Meteor.subscribe('hostList');
     },
     template: 'hosts'
 });
