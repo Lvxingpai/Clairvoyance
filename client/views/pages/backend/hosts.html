@@ -1,0 +1,147 @@
+<template name="hosts">
+    <!-- Page heading -->
+    {{> pageHeading title='Monitors of Hosts' category='Backend Service' }}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Host list</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <!--<li><a href="#" id="addService">添加服务监控</a></li>-->
+                                <!--<li><a href="#" id="deleteService">删除服务监控</a></li>-->
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="5">
+                            <thead>
+                            <tr>
+                                <!-- <th data-toggle="true">Project</th> -->
+                                <th></th>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <!--<th>IP</th>-->
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Create Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each hosts}}
+                                <tr>
+                                    <td><input type="radio" value="host{{index}}" id="host{{index}}" name="host" {{checked}}></td>
+                                    <td>{{instance_name}}</td>
+                                    <td>{{instance_id}}</td>
+                                    <td>{{instance_type}}</td>
+                                    <td>{{status}}</td>
+                                    <td>{{description}}</td>
+                                    <td>{{create_time}}</td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <ul class="pagination pull-right"></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>CPU
+                            <small>(‰)</small>
+                        </h5>
+                        {{>iboxTools}}
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <canvas id="hostCPU" height="140"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Memory
+                            <small>(‰)</small>
+                        </h5>
+                        {{>iboxTools}}
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <canvas id="hostMemory" height="140"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Disk OS
+                            <small>(B/S)</small>
+                        </h5>
+                        {{>iboxTools}}
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <canvas id="hostDiskOS" height="140"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Disk IOPS OS
+                            <small>(IOPS)</small>
+                        </h5>
+                        {{>iboxTools}}
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <canvas id="hostDiskIopsOS" height="140"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-lg-6">-->
+                <!--<div class="ibox float-e-margins">-->
+                    <!--<div class="ibox-title">-->
+                        <!--<h5>Disk Uesd Space OS-->
+                            <!--<small>(‰)</small>-->
+                        <!--</h5>-->
+                        <!--{{>iboxTools}}-->
+                    <!--</div>-->
+                    <!--<div class="ibox-content">-->
+                        <!--<div>-->
+                            <!--<canvas id="hostUsOS" height="140"></canvas>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</template>

@@ -1,13 +1,13 @@
-var db = config.db;
-
+// 还在使用旧的etcd类
 // 监控管理器
-var AlarmManagerClass = function () {
+AlarmManagerClass = function () {
     this.alarmList = {};//记录每个服务与对应的timer
     this.alarmInterval = 6 * 60 * 60 * 1000;//警报间隔
 
     // 根据一个service建立一个alarm对象
     this.createAlarm = function (service) {
         var self = this;
+        var interval = service.alert.interval || 60;
         var intervalId = Meteor.setInterval(function () {
             // etcd中查找服务
             var serviceObj = self._getEtcdServiceNode(service);
@@ -42,7 +42,7 @@ var AlarmManagerClass = function () {
                 }
 
                 // 检测返回的数据的正确性
-                if (responseData && self._validateResponse(service.alert.validation, responseData)) {
+                if (responseData && self._validateResponse(service.alert.ping.validation, responseData)) {
                     nodeStatus = 'OK';
                     serviceStatus = true;
                 }
@@ -60,13 +60,13 @@ var AlarmManagerClass = function () {
                 self.serviceAlert(service);
             } else {
                 if (!service.status || service.status != 'running') {
-                    db.Service.update({'name': service.name}, {$set: {status: 'running'}}, {upsert: true});
+                    DB.Service.update({'name': service.name}, {$set: {status: 'running'}}, {upsert: true});
                 }
             }
 
             // 更新数据库
-            db.Service.update({'name': service.name}, {$set: {nodes: updateNodes}}, {upsert: true});
-        }, service.alert.interval * 1000);
+            DB.Service.update({'name': service.name}, {$set: {nodes: updateNodes}}, {upsert: true});
+        }, interval * 1000);
 
         this.alarmList[service.name] = {
             intervalId: intervalId,
@@ -121,7 +121,7 @@ var AlarmManagerClass = function () {
     // service状态达到警戒线的处理
     this.serviceAlert = function (service) {
         var self = this;
-        db.Service.update({'name': service.name}, {$set: {status: 'stop'}}, {upsert: true});
+        DB.Service.update({'name': service.name}, {$set: {status: 'stop'}}, {upsert: true});
 
         // 判断服务是否未到达警报时间间隔
         if (service.alert.lastTriggered && ((Date.now() - service.alert.lastTriggered) < this.alarmInterval)) {
@@ -129,7 +129,7 @@ var AlarmManagerClass = function () {
             return;
         }
 
-        var alertPolicy = db.AlertPolicy.find({name: service.alert.policy}).fetch();
+        var alertPolicy = DB.AlertPolicy.find({name: service.alert.policy}).fetch();
         if (alertPolicy.length > 1) {
             console.log('AlertPolicy出现重复的 ' + service.alert.policy);
         }
@@ -154,7 +154,7 @@ var AlarmManagerClass = function () {
 
         console.log(service.name);
         // 更新时间警报
-        db.Service.update({'name': service.name}, {$set: {'alert.lastTriggered': Date.now()}}, {upsert: true});
+        DB.Service.update({'name': service.name}, {$set: {'alert.lastTriggered': Date.now()}}, {upsert: true});
         return;
     };
 
@@ -195,16 +195,37 @@ var AlarmManagerClass = function () {
     // 发送警报短信
     this.sendAlertSms = function (serviceName, tel) {
         var text = serviceName + '服务出现错误';
-        var send = smsCenter.sendSmsFunc(text, [tel]);
+        var send = Meteor.call('smsCenter.sendSmsFunc', text, [tel]);
         return send;
     };
-}
 
-AlarmManager = new AlarmManagerClass();
+    // 删除一个警报器
+    this.deleteAlarm = function (service){
+        if (this.alarmList[service.name]){
+            clearInterval(this.alarmList[service.name].intervalId);
+            this.alarmList[service.name] = undefined;
+            return true;
+        }
+        return false;
+    }
+}
 
 // 根据组名，获取用户
 function getGroupUsers(group) {
     // TODO 根据group在users collection中查找相应的user
     return [];
 }
+
+Meteor.methods({
+    'alarm.deleteAlarm': function(service){
+        check(service, Object);
+        return AlarmManager.deleteAlarm(service);
+    },
+
+    //栈溢出...先直接调用AlarmManeger
+    //'alarm.createAlarm': function(service){
+    //    check(service, Object);
+    //    return AlarmManager.createAlarm(service);
+    //}
+})
 

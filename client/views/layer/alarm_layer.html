@@ -1,48 +1,76 @@
 <template name="alarmLayer">
     <div class="alarm-layer">
         <div class="checkbox">
-            <input type="checkbox" id="alarmEnable">
+            <input type="checkbox" id="alarmEnable" {{hasAlert}}>
             <label for="alarmEnable">Enabled</label>
         </div>
+        {{#with alert}}
         <div class="row">
             <div class="col-md-5">
                 <form>
                     <div class="form-group">
-                        <label for="setInterval">Interval</label>
-                        <input type="text" class="form-control" id="setInterval" placeholder="">
+                        <label for="serviceInterval">Interval</label>
+                        <input type="text" class="form-control" id="serviceInterval" placeholder="" value="{{interval}}">
                     </div>
-                    <select class="form-control">
-                        <label class="alarm-alertpolicy">Alert policy</label>
-                        <option>1</option>
-                        <option>2</option>
+                    <label for="serviceAlertpolicy">Alert policy</label>
+
+                    <select class="form-control" id="serviceAlertpolicy">
+                    {{#each policyList}}
+                        <option {{isChecked}}>{{name}}</option>
+                    {{/each}}
                     </select>
 
                     <div class="form-group">
-                        <label for="setMinimalNodes">Minimal nodes count</label>
-                        <input type="text" class="form-control" id="setMinimalNodes" placeholder="">
+                        <label for="serviceMinimalNodes">Minimal nodes count</label>
+                        <input type="text" class="form-control" id="serviceMinimalNodes" placeholder="" value="{{minNodeCount}}">
                     </div>
                 </form>
             </div>
             <div class="col-md-7">
-                <div class="checkbox">
-                    <input type="checkbox" id="alarmPing">
-                    <label for="alarmPing">Custom ping</label>
-                </div>
+                <!--<div class="checkbox">-->
+                    <!--<input type="checkbox" id="serviceAlarmPing">-->
+                    <!--<label for="serviceAlarmPing">Custom ping</label>-->
+                <!--</div>-->
+                {{#with ping}}
                 <div class="ping-setting">
                     <div class="form-group">
-                        <label for="setEntrypoint">Entrypoint</label>
-                        <input type="text" class="form-control" id="setEntrypoint" placeholder="">
+                        <label for="serviceEntrypoint">Entrypoint</label>
+                        <input type="text" class="form-control" id="serviceEntrypoint" placeholder="" value="{{entrypoint}}">
                     </div>
                     <div class="form-group">
-                        <label for="setPort">Port</label>
-                        <input type="text" class="form-control" id="setPort" placeholder="">
+                        <label for="servicePingType">Type</label>
+                        <input type="text" class="form-control" id="servicePingType" placeholder="" value="{{type}}">
                     </div>
                     <div class="form-group">
-                        <label for="setValidation">Validation</label>
-                        <textarea class="form-control" rows="3" id="setValidation"></textarea>
+                        <label for="servicePingPort">Port(For Redis etc.)</label>
+                        <input type="text" class="form-control" id="servicePingPort" placeholder="" value="{{port}}">
                     </div>
+
+                    {{#if validation}}
+                        {{#with validation}}
+                        <div class="form-group">
+                            <label for="serviceValidationType">Validation Type</label>
+                            <input type="text" class="form-control" id="serviceValidationType" placeholder="" value="{{type}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceValidationRules">Validation Value</label>
+                            <textarea class="form-control" rows="3" id="serviceValidationRules" value="{{rules}}"></textarea>
+                        </div>
+                        {{/with}}
+                    {{else}}
+                        <div class="form-group">
+                            <label for="serviceValidationType">Validation Type</label>
+                            <input type="text" class="form-control" id="serviceValidationType" placeholder="" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceValidationRules">Validation Value</label>
+                            <textarea class="form-control" rows="3" id="serviceValidationRules" value=""></textarea>
+                        </div>
+                    {{/if}}
                 </div>
+                {{/with}}
             </div>
         </div>
+        {{/with}}
     </div>
 </template>
